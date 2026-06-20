@@ -9,7 +9,7 @@
       "dependencies": [],
       "compatiblePackages": [
         {
-          "packageName": "com.letterboxd.android",
+          "packageName": "com.letterboxd.letterboxd",
           "name": "Letterboxd",
           "description": null,
           "apkFileType": "APK",
@@ -25,22 +25,6 @@
           ]
         }
       ],
-      "options": []
-    }
-  ]
-}{
-  "version": "1.0.0",
-  "patches": [
-    {
-      "name": "Add Stremio button",
-      "description": "Adds a purple Stremio button to film pages, placed below the trailer button when one exists or in its position when it does not. Opens the film directly in the Stremio app or web player.",
-      "use": true,
-      "dependencies": [
-        "BytecodePatch"
-      ],
-      "compatiblePackages": {
-        "com.letterboxd.android": null
-      },
       "options": []
     }
   ]
