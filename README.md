@@ -1,5 +1,5 @@
 # letterboxd-stremio-morphe-patch
-Morphe patch that adds a Stremio button to film pages in the Letterboxd app. Made using Claude Sonnet 4.6.
+Morphe patch that adds a Stremio button to film pages in the Letterboxd app. Made using Claude.
 
 # Installation:
 Add the URL of this repo to your sources in the Morphe app.
