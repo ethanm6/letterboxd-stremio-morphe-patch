@@ -1,0 +1,27 @@
+# Contains your GitHub PAT — never commit
+gradle.properties
+
+# Build outputs
+**/build/
+.gradle/
+
+# IDE
+.idea/
+*.iml
+local.properties
+
+# Claude Code local settings
+.claude/
+
+# Local-only project source — not part of the published patch source repo
+# (this repo only publishes README.md, patches-bundle.json, patches-list.json,
+# and the .mpp release asset)
+patches/
+extensions/
+gradle/
+gradlew
+gradlew.bat
+settings.gradle.kts
+LICENSE
+NOTICE
+CLAUDE.md
