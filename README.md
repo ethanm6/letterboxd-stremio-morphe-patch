@@ -1,5 +1,20 @@
 # letterboxd-stremio-morphe-patch
-Morphe patch that adds a Stremio button to film pages in the Letterboxd app. Made using Claude.
+Morphe patches for the Letterboxd Android app. Made using Claude.
 
-# Installation:
-Add the URL of this repo to your sources in the Morphe app.
+- **Add Stremio button** — adds a purple Stremio button to film pages that opens the film in the Stremio app or web player.
+- **Hide Video Store** — hides the "Rent from Letterboxd Video Store" banner on film pages and the carousel row on the home feed.
+- **Hide Where to Watch** — hides the "Where to watch" streaming-service icon row on film pages.
+
+All three are on by default and can be toggled independently.
+
+## Installation
+
+1. Open Morphe Manager.
+2. Go to Patch Sources.
+3. Add a new source using this repo's URL: `github.com/ethanm6/letterboxd-stremio-morphe-patch`
+4. Refresh the source if it was already added before.
+5. Patch the Letterboxd APK, selecting whichever of the three patches above you want enabled.
+
+## Compatibility
+
+Tested and confirmed working alongside De-Vanced's Letterboxd patches — both patch sources can be added to Morphe Manager and used together.
