@@ -18,3 +18,7 @@ All three are on by default and can be toggled independently.
 ## Compatibility
 
 Tested and confirmed working alongside De-Vanced's Letterboxd patches — both patch sources can be added to Morphe Manager and used together.
+
+## Disclaimer
+
+This is an unofficial, unaffiliated patch for the Letterboxd app. Letterboxd is a trademark of Letterboxd Limited. Modifying the app may violate Letterboxd's Terms of Service — use at your own risk. This project is not affiliated with, endorsed by, or associated with Letterboxd, Stremio, or Morphe.
