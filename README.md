@@ -21,7 +21,7 @@ Tested and confirmed working alongside De-Vanced's Letterboxd patches — both p
 
 ## Disclaimer
 
-This is an unofficial, unaffiliated patch for the Letterboxd app. Letterboxd is a trademark of Letterboxd Limited. Modifying the app may violate Letterboxd's Terms of Service — use at your own risk. This project is not affiliated with, endorsed by, or associated with Letterboxd, Stremio, or Morphe.
+This is an unofficial project, not affiliated with or endorsed by Letterboxd, Stremio, or Morphe. Modifying the app may violate Letterboxd's Terms of Service — use at your own risk.
 
 ## License
 
