@@ -22,3 +22,9 @@ Tested and confirmed working alongside De-Vanced's Letterboxd patches — both p
 ## Disclaimer
 
 This is an unofficial, unaffiliated patch for the Letterboxd app. Letterboxd is a trademark of Letterboxd Limited. Modifying the app may violate Letterboxd's Terms of Service — use at your own risk. This project is not affiliated with, endorsed by, or associated with Letterboxd, Stremio, or Morphe.
+
+## License
+
+The original code in this project is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version. See [LICENSE](LICENSE) for the full text.
+
+Exception: `patches/src/main/kotlin/util/PatchListGenerator.kt` is taken verbatim from the official [Morphe patches template](https://github.com/MorpheApp/morphe-patches-template) and remains under its upstream GPL-3.0 license.
