@@ -19,6 +19,12 @@ All three are on by default and can be toggled independently.
 
 Tested and confirmed working alongside De-Vanced's Letterboxd patches — both patch sources can be added to Morphe Manager and used together.
 
+## Support
+
+If you find this project useful, you can support development:
+
+[![Support me on Ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/ethanm6)
+
 ## Disclaimer
 
 This is an unofficial project, not affiliated with or endorsed by Letterboxd, Stremio, or Morphe. Modifying the app may violate Letterboxd's Terms of Service — use at your own risk.
