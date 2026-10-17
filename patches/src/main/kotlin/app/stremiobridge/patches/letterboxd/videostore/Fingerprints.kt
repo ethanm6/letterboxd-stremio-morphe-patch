@@ -7,7 +7,7 @@ import app.morphe.patcher.Fingerprint
  * VideoStoreProductSummary)V — the method that populates (or hides) the
  * "Rent from Letterboxd Video Store" banner on film pages.
  *
- * Verified against Letterboxd 3.5.3 (versionCode 495) by direct DEX analysis.
+ * Verified against Letterboxd 3.5.7 (versionCode 503) by direct DEX analysis.
  * The method already hides the banner container when its product-summary
  * argument is null, so the patch forces that argument to null.
  *
@@ -27,7 +27,7 @@ object UpdateVideoStoreBannerFingerprint : Fingerprint(
  * Kotlin data-class getter that exposes the nullable VideoStoreHomeResponse
  * backing the "Letterboxd Video Store" carousel row on the home feed.
  *
- * Verified against Letterboxd 3.5.3 (versionCode 495) by direct DEX analysis.
+ * Verified against Letterboxd 3.5.7 (versionCode 503) by direct DEX analysis.
  * SignedInPopularFilmsFragment's state collector (onViewCreated$3$1.emit)
  * already hides FragmentSignedInPopularFilmsBinding.videoStoreProductsLayout
  * (sets visibility GONE) whenever this getter returns null, so forcing it to

@@ -79,7 +79,7 @@ val hideVideoStoreCtaPatch = bytecodePatch(
     description = "Hides the \"Rent from Letterboxd Video Store\" banner on film " +
         "pages, the video store carousel row on the home feed, and the " +
         "\"Letterboxd Video Store\" row in the search page's \"Browse by\" " +
-        "list. Can be toggled independently of the Stremio button patch.",
+        "list. Can be toggled independently of the other patches.",
     default = true,
 ) {
     compatibleWith(COMPATIBILITY_LETTERBOXD)

@@ -1,6 +1,5 @@
 package app.stremiobridge.extension;
 
-import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
@@ -19,7 +18,7 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 /**
- * Stremio Bridge extension for Letterboxd 3.5.3 (versionCode 495).
+ * Stremio Bridge extension for Letterboxd 3.5.7 (versionCode 503).
  *
  * <p>Merged into the patched APK's DEX pool and called from two separate
  * injected smali instructions (see AddStremioButtonPatch.kt):
@@ -670,8 +669,18 @@ public final class StremioExtension {
         appIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         try {
             ctx.startActivity(appIntent);
-        } catch (ActivityNotFoundException e) {
+        } catch (Exception e) {
+            Log.d(TAG, "launchAppOrWeb: " + e.getMessage());
+            openWeb(ctx, id);
+        }
+    }
+
+    /** Opens the Stremio web player as a last resort, swallowing any failure. */
+    private static void openWeb(Context ctx, String id) {
+        try {
             ctx.startActivity(new Intent(Intent.ACTION_VIEW, webFallbackUri(id)));
+        } catch (Exception e) {
+            Log.d(TAG, "openWeb: " + e.getMessage());
         }
     }
 
@@ -704,7 +713,7 @@ public final class StremioExtension {
         if (launchIntent != null) {
             launchAppOrWeb(ctx, PKG_NUVIO, launchIntent, id);
         } else {
-            ctx.startActivity(new Intent(Intent.ACTION_VIEW, webFallbackUri(id)));
+            openWeb(ctx, id);
         }
     }
 

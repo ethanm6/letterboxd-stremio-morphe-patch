@@ -4,7 +4,7 @@ patches {
     about {
         name = "Letterboxd Stremio Bridge"
         description = "Patches for the Letterboxd app: Stremio button on film pages, " +
-            "hide video store, and hide where-to-watch row."
+            "hide video store, hide where-to-watch row, and hide the Spotlight ad."
         source = "https://github.com/ethanm6/letterboxd-stremio-morphe-patch"
         author = "ethanm6"
         contact = "na"
