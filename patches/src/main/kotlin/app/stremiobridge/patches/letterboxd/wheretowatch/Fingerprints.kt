@@ -7,7 +7,7 @@ import app.morphe.patcher.Fingerprint
  * — the method that populates (or hides) the "Where to watch" streaming-service
  * icon row on film pages.
  *
- * Verified against Letterboxd 3.5.7 (versionCode 503) by direct DEX analysis.
+ * Verified against Letterboxd 3.5.8 (versionCode 504) by direct DEX analysis.
  * WhereToWatchFragment is the child fragment hosted in
  * ActivityFilmBinding.filmWheretowatch (a FragmentContainerView). The method
  * already hides its own root LinearLayout when the film isn't owned and the
@@ -20,6 +20,9 @@ object UpdateServicesIconsFingerprint : Fingerprint(
     returnType = "V",
     custom = { method, classDef ->
         classDef.type == "Lcom/letterboxd/letterboxd/ui/fragments/film/WhereToWatchFragment;" &&
-            method.name == "updateServicesIcons"
+            method.name == "updateServicesIcons" &&
+            method.parameterTypes.size == 2 &&
+            method.parameterTypes[0].contentEquals("Z") &&
+            method.parameterTypes[1].contentEquals("Ljava/util/List;")
     },
 )

@@ -29,16 +29,18 @@ private const val EXTENSION_CLASS = "Lapp/stremiobridge/extension/StremioExtensi
  *    Link[type=Imdb].getId(), read via reflection). Runs once per film
  *    page load, before the button can be tapped.
  *
- *    Index 0, register v6 = FilmViewModel$FilmResults (passed as Object;
- *    pristine incoming-parameter state, no need to wait for any field load).
+ *    Index 0, parameter register p2 = FilmViewModel$FilmResults (passed as
+ *    Object; pristine incoming-parameter state, no need to wait for any field
+ *    load). Parameter registers are used rather than fixed v-registers so the
+ *    injection is unaffected by changes to the method's local register count.
  *
  * 2. FilmHeaderFragment.configureTrailer — creates and positions the
  *    button as a runtime clone of the real trailer button.
  *
- *    Index 0, registers:
- *      v1 = this (FilmHeaderFragment / Fragment)
- *      v2 = FilmTrailer, nullable (null means "no trailer")
- *      v4 = FragmentFilmHeaderBinding (as Object; "trailerButton" read via
+ *    Index 0, parameter registers:
+ *      p0 = this (FilmHeaderFragment / Fragment)
+ *      p1 = FilmTrailer, nullable (null means "no trailer")
+ *      p3 = FragmentFilmHeaderBinding (as Object; "trailerButton" read via
  *           reflection, since View Binding classes expose views as plain
  *           public fields)
  *
@@ -61,13 +63,13 @@ val addStremioButtonPatch = bytecodePatch(
     execute {
         UpdateDataFingerprint.method.addInstructions(
             0,
-            "invoke-static { v6 }, " +
+            "invoke-static { p2 }, " +
                 "$EXTENSION_CLASS->cacheImdbId(Ljava/lang/Object;)V",
         )
 
         ConfigureTrailerFingerprint.method.addInstructions(
             0,
-            "invoke-static { v1, v2, v4 }, " +
+            "invoke-static { p0, p1, p3 }, " +
                 "$EXTENSION_CLASS->onTrailerConfigured(" +
                 "Landroidx/fragment/app/Fragment;" +
                 "Ljava/lang/Object;" +

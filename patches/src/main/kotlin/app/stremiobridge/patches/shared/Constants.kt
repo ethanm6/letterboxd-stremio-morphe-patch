@@ -13,7 +13,7 @@ object Constants {
      * matches by class name + method name (not by fixed bytecode offset),
      * making it resilient to most app updates that don't rename the method.
      *
-     * Verified against versionCode 503 (3.5.7).
+     * Verified against versionCode 504 (3.5.8).
      */
     val COMPATIBILITY_LETTERBOXD = Compatibility(
         packageName = "com.letterboxd.letterboxd",

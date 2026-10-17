@@ -9,7 +9,7 @@ import app.morphe.patcher.Fingerprint
  * next to the "Popular this week" row; title/subtitle/poster/video all come from
  * this object, e.g. title "Spotlight", subtitle = the sponsor's own title).
  *
- * Verified against Letterboxd 3.5.7 (versionCode 503) by direct DEX analysis.
+ * Verified against Letterboxd 3.5.8 (versionCode 504) by direct DEX analysis.
  * SignedInPopularFilmsFragment's state collector (onViewCreated$3$1.emit) already
  * hides FragmentSignedInPopularFilmsBinding.adComposeView (a Jetpack Compose
  * ComposeView, set to View.GONE) whenever this getter returns null; when non-null
@@ -26,6 +26,7 @@ object GetFeaturedTrailerFingerprint : Fingerprint(
     custom = { method, classDef ->
         classDef.type ==
             "Lcom/letterboxd/letterboxd/ui/fragments/popular/PopularViewModel\$UIState\$MainView;" &&
-            method.name == "getFeaturedTrailer"
+            method.name == "getFeaturedTrailer" &&
+            method.parameterTypes.isEmpty()
     },
 )

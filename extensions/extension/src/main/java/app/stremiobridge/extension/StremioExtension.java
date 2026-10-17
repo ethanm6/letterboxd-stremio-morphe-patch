@@ -18,7 +18,7 @@ import java.lang.reflect.Method;
 import java.util.List;
 
 /**
- * Stremio Bridge extension for Letterboxd 3.5.7 (versionCode 503).
+ * Stremio Bridge extension for Letterboxd 3.5.8 (versionCode 504).
  *
  * <p>Merged into the patched APK's DEX pool and called from two separate
  * injected smali instructions (see AddStremioButtonPatch.kt):
@@ -126,7 +126,12 @@ public final class StremioExtension {
             if (!(links instanceof List)) return null;
             for (Object link : (List<?>) links) {
                 Object type = call(link, "getType");
-                if (type != null && type.getClass().getSimpleName().contains("Imdb")) {
+                // Link.type is a Kotlin sealed-class subtype whose runtime class
+                // is named e.g. Link$Type$Imdb, so getSimpleName() == "Imdb".
+                // Compare case-insensitively so a future rename (e.g. "IMDb")
+                // can't silently make the button disappear.
+                if (type != null
+                    && type.getClass().getSimpleName().toLowerCase().contains("imdb")) {
                     Object id = call(link, "getId");
                     if (id instanceof String && !((String) id).isEmpty())
                         return (String) id;

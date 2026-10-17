@@ -7,7 +7,7 @@ import app.morphe.patcher.Fingerprint
  * VideoStoreProductSummary)V — the method that populates (or hides) the
  * "Rent from Letterboxd Video Store" banner on film pages.
  *
- * Verified against Letterboxd 3.5.7 (versionCode 503) by direct DEX analysis.
+ * Verified against Letterboxd 3.5.8 (versionCode 504) by direct DEX analysis.
  * The method already hides the banner container when its product-summary
  * argument is null, so the patch forces that argument to null.
  *
@@ -18,7 +18,9 @@ object UpdateVideoStoreBannerFingerprint : Fingerprint(
     returnType = "V",
     custom = { method, classDef ->
         classDef.type == "Lcom/letterboxd/letterboxd/ui/fragments/film/FilmFragment;" &&
-            method.name == "updateVideoStoreBanner"
+            method.name == "updateVideoStoreBanner" &&
+            method.parameterTypes.size == 2 &&
+            method.parameterTypes.any { it.contains("VideoStoreProductSummary") }
     },
 )
 
@@ -27,7 +29,7 @@ object UpdateVideoStoreBannerFingerprint : Fingerprint(
  * Kotlin data-class getter that exposes the nullable VideoStoreHomeResponse
  * backing the "Letterboxd Video Store" carousel row on the home feed.
  *
- * Verified against Letterboxd 3.5.7 (versionCode 503) by direct DEX analysis.
+ * Verified against Letterboxd 3.5.8 (versionCode 504) by direct DEX analysis.
  * SignedInPopularFilmsFragment's state collector (onViewCreated$3$1.emit)
  * already hides FragmentSignedInPopularFilmsBinding.videoStoreProductsLayout
  * (sets visibility GONE) whenever this getter returns null, so forcing it to
@@ -41,7 +43,8 @@ object GetVideoStoreHomeDataFingerprint : Fingerprint(
     custom = { method, classDef ->
         classDef.type ==
             "Lcom/letterboxd/letterboxd/ui/fragments/popular/PopularViewModel\$UIState\$MainView;" &&
-            method.name == "getVideoStoreHomeData"
+            method.name == "getVideoStoreHomeData" &&
+            method.parameterTypes.isEmpty()
     },
 )
 
@@ -53,7 +56,7 @@ object GetVideoStoreHomeDataFingerprint : Fingerprint(
  * Row.VideoStore filtered out; this method is the sole place that adds it
  * back in, called from BrowseFragment when the feature is available.
  *
- * Verified against Letterboxd 3.5.7 (versionCode 503) by direct DEX analysis.
+ * Verified against Letterboxd 3.5.8 (versionCode 504) by direct DEX analysis.
  *
  * Matched by class type + method name so it's resilient to most updates that
  * don't rename the method.
@@ -62,6 +65,7 @@ object AddVideoStoreRowFingerprint : Fingerprint(
     returnType = "V",
     custom = { method, classDef ->
         classDef.type == "Lcom/letterboxd/letterboxd/ui/item/BrowseRecyclerViewAdapter;" &&
-            method.name == "addVideoStoreRow"
+            method.name == "addVideoStoreRow" &&
+            method.parameterTypes.isEmpty()
     },
 )

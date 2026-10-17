@@ -33,10 +33,12 @@ import app.stremiobridge.patches.shared.Constants.COMPATIBILITY_LETTERBOXD
  *   [14] return-void          //   -> and return (banner stays hidden)
  *
  * So the cleanest, most robust neutralization is to force the product-summary
- * parameter (register v5) to null at the very start of the method. Letterboxd's
- * own existing code then hides the container and returns — no view lookups or
- * fragile indices of our own. Register layout: registers=6, ins=3, so the
- * parameters are v3=this, v4=binding, v5=VideoStoreProductSummary.
+ * parameter register p2 (product) to null at the very start of the method.
+ * Letterboxd's own existing code then hides the container and returns — no view
+ * lookups or fragile indices of our own. Register layout: registers=6, ins=3, so
+ * the parameters are p0=this, p1=binding, p2=VideoStoreProductSummary (v3/v4/v5).
+ * The parameter register p2 is targeted rather than the local v5 so the injection
+ * is unaffected by changes to the method's local register count.
  *
  * This targets a different method than the Stremio patch, so there are no index
  * conflicts and the two patches work in any combination.
@@ -85,11 +87,11 @@ val hideVideoStoreCtaPatch = bytecodePatch(
     compatibleWith(COMPATIBILITY_LETTERBOXD)
 
     execute {
-        // Force the VideoStoreProductSummary parameter (v5) to null so the
+        // Force the VideoStoreProductSummary parameter (p2) to null so the
         // method's own "no product -> hide container" path runs.
         UpdateVideoStoreBannerFingerprint.method.addInstructions(
             0,
-            "const/4 v5, 0x0",
+            "const/4 p2, 0x0",
         )
 
         // Force the home-feed video store getter to always return null so the

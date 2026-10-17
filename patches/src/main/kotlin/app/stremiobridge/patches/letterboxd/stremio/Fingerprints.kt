@@ -10,20 +10,22 @@ import app.morphe.patcher.Fingerprint
  * extension). This runs once per film-page load, before the user can tap
  * the Stremio button created by ConfigureTrailerFingerprint's injection.
  *
- * Verified against Letterboxd 3.5.7 (versionCode 503).
+ * Verified against Letterboxd 3.5.8 (versionCode 504).
  */
 object UpdateDataFingerprint : Fingerprint(
     returnType = "V",
     custom = { method, classDef ->
         classDef.type == "Lcom/letterboxd/letterboxd/ui/fragments/film/FilmFragment;" &&
-            method.name == "updateData"
+            method.name == "updateData" &&
+            method.parameterTypes.size == 2 &&
+            method.parameterTypes.any { it.contains("FilmResults") }
     },
 )
 
 /**
  * Targets FilmHeaderFragment.configureTrailer(FilmTrailer, String, FragmentFilmHeaderBinding)V.
  *
- * Verified against Letterboxd 3.5.7 (versionCode 503) by direct DEX analysis.
+ * Verified against Letterboxd 3.5.8 (versionCode 504) by direct DEX analysis.
  *
  * Earlier patch revisions incorrectly targeted FilmFragment.updateData and its
  * filmCallToActionsCompose ComposeView — that view turned out to be the
@@ -51,6 +53,8 @@ object ConfigureTrailerFingerprint : Fingerprint(
     returnType = "V",
     custom = { method, classDef ->
         classDef.type == "Lcom/letterboxd/letterboxd/ui/fragments/film/FilmHeaderFragment;" &&
-            method.name == "configureTrailer"
+            method.name == "configureTrailer" &&
+            method.parameterTypes.size == 3 &&
+            method.parameterTypes.any { it.contains("FilmTrailer") }
     },
 )
